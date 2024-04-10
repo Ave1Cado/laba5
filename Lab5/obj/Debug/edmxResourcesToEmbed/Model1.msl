@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище tabachkModelContainer" CdmEntityContainer="tabachkEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="tabachkModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="tabachkModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="tabachkModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="tabachkModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategories">
+      <EntityTypeMapping TypeName="tabachkModel.ProductCategories">
+        <MappingFragment StoreEntitySet="ProductCategories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="tabachkModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="QuantityInStock" ColumnName="QuantityInStock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Returns">
+      <EntityTypeMapping TypeName="tabachkModel.Returns">
+        <MappingFragment StoreEntitySet="Returns">
+          <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="ReturnReason" ColumnName="ReturnReason" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="tabachkModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CanManageDatabase" ColumnName="CanManageDatabase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="tabachkModel.Services">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

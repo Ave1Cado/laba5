@@ -1,0 +1,135 @@
+﻿<Window x:Class="Lab5.CashierRoleWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab5"
+        mc:Ignorable="d"
+        Title="CashierRoleWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="5">
+            <Button Content="Продукты" Click="Products_Click" Margin="0,0,0,5"/>
+            <Button Content="Заказы" Click="Orders_Click"/>
+            <Button Content="Категории продуктов" Click="ProductCategories_Click" Margin="0,0,0,5"/>
+            <Button Content="Клиенты" Click="Customers_Click" Margin="0,0,0,5"/>
+            <Button Content="Детали заказа" Click="OrderDetails_Click" Margin="0,0,0,5"/>
+            <Button Content="Услуги" Click="Services_Click" Margin="0,0,0,5"/>
+            <Button Content="Возвраты" Click="Returns_Click" Margin="0,0,0,5"/>
+
+        </StackPanel>
+        <DataGrid x:Name="CashierDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="5,5,5,5" Grid.RowSpan="2"/>
+        <Grid x:Name="productButtons" Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="NewValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст" Margin="5"/>
+            <TextBox x:Name="SecondValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ordersButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="OrderValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст2" Margin="5"/>
+            <TextBox x:Name="SecondOrderValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст2" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="categoriesButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="CategoryValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст3" Margin="5"/>
+            <TextBox x:Name="SecondCategoryValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст3" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="clientsButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="ClientValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст4" Margin="5"/>
+            <TextBox x:Name="SecondClientValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст4" Margin="5"/>
+            <TextBox x:Name="triClientValueTextBox" Grid.Column="2" materialDesign:HintAssist.Hint="Введите текст4" Margin="5"/>
+            <TextBox x:Name="forClientValueTextBox" Grid.Column="3" materialDesign:HintAssist.Hint="Введите текст4" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="detailsButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="DetailValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст5" Margin="5"/>
+            <TextBox x:Name="SecondDetailValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст5" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="yButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="YValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст6" Margin="5"/>
+            <TextBox x:Name="SecondYValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст6" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="returnButtons" Grid.Column="1" Grid.Row="2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="ReturnValueTextBox" Grid.Column="0" materialDesign:HintAssist.Hint="Введите текст7" Margin="5"/>
+            <TextBox x:Name="SecondReturnValueTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Введите текст7" Margin="5"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Добавить" Click="Add_Click" Margin="0,0,5,0"/>
+                <Button Content="Изменить" Click="Edit_Click" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
+
+
+
+    </Grid>
+</Window>

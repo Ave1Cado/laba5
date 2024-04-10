@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tabachkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__3E52440B" FromRole="Customers" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDetailID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HireDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__Employees__Order__49C3F6B7" FromRole="Employees" ToRole="OrderDetails" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__EmployeeI__5070F446" FromRole="Employees" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Int32" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Order__49C3F6B7" FromRole="OrderDetails" ToRole="Employees" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__412EB0B6" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__OrderDeta__Produ__4222D4EF" FromRole="OrderDetails" ToRole="Products" />
+    <NavigationProperty Name="Returns" Relationship="Self.FK__Returns__OrderDe__46E78A0C" FromRole="OrderDetails" ToRole="Returns" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="TotalAmount" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Orders__Customer__3E52440B" FromRole="Orders" ToRole="Customers" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__412EB0B6" FromRole="Orders" ToRole="OrderDetails" />
+  </EntityType>
+  <EntityType Name="ProductCategories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Products__Catego__398D8EEE" FromRole="ProductCategories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="QuantityInStock" Type="Int32" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__4222D4EF" FromRole="Products" ToRole="OrderDetails" />
+    <NavigationProperty Name="ProductCategories" Relationship="Self.FK__Products__Catego__398D8EEE" FromRole="Products" ToRole="ProductCategories" />
+  </EntityType>
+  <EntityType Name="Returns">
+    <Key>
+      <PropertyRef Name="ReturnID" />
+    </Key>
+    <Property Name="ReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDetailID" Type="Int32" />
+    <Property Name="ReturnReason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__Returns__OrderDe__46E78A0C" FromRole="Returns" ToRole="OrderDetails" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CanManageDatabase" Type="Boolean" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Roles__EmployeeI__5070F446" FromRole="Roles" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Orders__Customer__3E52440B">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__Order__49C3F6B7">
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="OrderDetailID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__EmployeeI__5070F446">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__412EB0B6">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Produ__4222D4EF">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Returns__OrderDe__46E78A0C">
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+    <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="OrderDetailID" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Catego__398D8EEE">
+    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tabachkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Returns" EntityType="Self.Returns" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Services" EntityType="Self.Services" />
+    <AssociationSet Name="FK__Orders__Customer__3E52440B" Association="Self.FK__Orders__Customer__3E52440B">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__Order__49C3F6B7" Association="Self.FK__Employees__Order__49C3F6B7">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__EmployeeI__5070F446" Association="Self.FK__Roles__EmployeeI__5070F446">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__412EB0B6" Association="Self.FK__OrderDeta__Order__412EB0B6">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Produ__4222D4EF" Association="Self.FK__OrderDeta__Produ__4222D4EF">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Returns__OrderDe__46E78A0C" Association="Self.FK__Returns__OrderDe__46E78A0C">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Catego__398D8EEE" Association="Self.FK__Products__Catego__398D8EEE">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

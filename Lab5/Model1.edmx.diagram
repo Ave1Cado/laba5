@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67c5a45d9a834f6dac487f656dc5b73b" Name="Diagram1">
+        <EntityTypeShape EntityType="tabachkModel.Customers" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Employees" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.OrderDetails" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Orders" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.ProductCategories" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Products" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Returns" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Roles" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tabachkModel.Services" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="tabachkModel.FK__Orders__Customer__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__Employees__Order__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__Roles__EmployeeI__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__OrderDeta__Order__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__OrderDeta__Produ__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__Returns__OrderDe__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="tabachkModel.FK__Products__Catego__398D8EEE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

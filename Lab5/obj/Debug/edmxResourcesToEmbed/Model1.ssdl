@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище tabachkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderDetailID" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" />
+    <Property Name="HireDate" Type="date" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitPrice" Type="int" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="TotalAmount" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "tabachk.dbo.OrdersServices" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="OrdersServices">
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ServiceID" Type="int" />
+        </EntityType>-->
+  <EntityType Name="ProductCategories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Price" Type="int" />
+    <Property Name="QuantityInStock" Type="int" />
+  </EntityType>
+  <EntityType Name="Returns">
+    <Key>
+      <PropertyRef Name="ReturnID" />
+    </Key>
+    <Property Name="ReturnID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderDetailID" Type="int" />
+    <Property Name="ReturnReason" Type="nvarchar" MaxLength="255" />
+    <Property Name="ReturnDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CanManageDatabase" Type="bit" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Price" Type="int" />
+  </EntityType>
+  <Association Name="FK__Employees__Order__49C3F6B7">
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="OrderDetailID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__412EB0B6">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Produ__4222D4EF">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__Customer__3E52440B">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "tabachk.dbo.OrdersServices", на которую ссылается связь.
+        <Association Name="FK__OrdersSer__Order__4BAC3F29" />-->
+  <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "tabachk.dbo.OrdersServices", на которую ссылается связь.
+        <Association Name="FK__OrdersSer__Servi__4CA06362" />-->
+  <Association Name="FK__Products__Catego__398D8EEE">
+    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Returns__OrderDe__46E78A0C">
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+    <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="OrderDetailID" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__EmployeeI__5070F446">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище tabachkModelContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Returns" EntityType="Self.Returns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employees__Order__49C3F6B7" Association="Self.FK__Employees__Order__49C3F6B7">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__412EB0B6" Association="Self.FK__OrderDeta__Order__412EB0B6">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Produ__4222D4EF" Association="Self.FK__OrderDeta__Produ__4222D4EF">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__Customer__3E52440B" Association="Self.FK__Orders__Customer__3E52440B">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Catego__398D8EEE" Association="Self.FK__Products__Catego__398D8EEE">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Returns__OrderDe__46E78A0C" Association="Self.FK__Returns__OrderDe__46E78A0C">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__EmployeeI__5070F446" Association="Self.FK__Roles__EmployeeI__5070F446">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
